@@ -1,7 +1,15 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Cajita from "./components/cajita";
+import Contadores from "./components/Contadores";
+
+function getArraycont(num) {
+  let temp = [];
+  for (let i = 0; i < num; i++) {
+    temp.push({ id: i + 1, value: "C#" + i });
+  }
+  return temp;
+}
 
 function App() {
   return (
@@ -13,26 +21,31 @@ function App() {
         <div className="card-body">
           <div className="row">
             <div className="col-md-4">
-              <Cajita titulo="Columna 1" />
+              <Cajita
+                titulo="Columna 1"
+                contenido={<Contadores numero={getArraycont(5)} />}
+              />
             </div>
             <div className="col-md-4">
-              <Cajita titulo="Columna 2" />
+              <Cajita
+                titulo="Columna 2"
+                contenido={<Contadores numero={getArraycont(4)} />}
+              />
             </div>
             <div className="col-md-4">
-              <Cajita titulo="Columna 3" />
+              <Cajita
+                titulo="Columna 3"
+                contenido={<Contadores numero={getArraycont(3)} />}
+              />
             </div>
           </div>
         </div>
       </div>
       <div className="row">
-        <div className="card text-center w-100">
-          <div className="card-header bg-light text-black  d-flex justify-content-between align-items-center">
-            Mis Datos
-          </div>
-          <div className="card-body">
-            Carlos Rodrigo Estrada Najarro 13/10/2020
-          </div>
-        </div>
+        <Cajita
+          titulo="Mis Datos:"
+          contenido="Carlos Rodrigo Estrada Najarro"
+        />
       </div>
     </div>
   );

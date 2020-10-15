@@ -3,16 +3,26 @@ import Counter from "./counter";
 
 class Contadores extends Component {
   state = {
-    Counters: [
-      { id: 1, value: "A" },
-      { id: 2, value: "B" },
-    ],
+    Counters: this.props.numero,
   };
+
+  handleDelete = (counterId) => {
+    console.log(counterId);
+    const temp = this.state.Counters.filter((c) => c.id !== counterId);
+    this.setState({ Counters: temp });
+  };
+
   render() {
     return (
       <div>
         {this.state.Counters.map((contador) => (
-          <Counter key={contador.id} value={contador.value} />
+          <Counter
+            key={contador.id}
+            value={contador}
+            onDelete={this.handleDelete}
+          >
+            <h4>Contador #{contador.id}</h4>
+          </Counter>
         ))}
       </div>
     );
